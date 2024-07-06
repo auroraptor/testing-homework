@@ -1,20 +1,22 @@
 {
     "compilerOptions": {
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "noImplicitAny": true,
-        "module": "es6",
-        "target": "es5",
-        "allowJs": true,
-        "jsx": "react",
-        "moduleResolution": "node"
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "noImplicitAny": true,
+      "module": "es6",
+      "target": "es5",
+      "allowJs": true,
+      "jsx": "react",
+      "moduleResolution": "node",
+      "types": ["jest", "node", "@testing-library/jest-dom/jest-globals"],
+      "baseUrl": "."
     },
-    "include": [
-        "src"
-    ],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+    "types": ["node", "jest", "@testing-library/jest-dom"],
     "ts-node": {
-        "compilerOptions": {
-            "module": "CommonJS"
-        }
+      "compilerOptions": {
+        "module": "CommonJS"
+      }
     }
-}
+  }
+  
