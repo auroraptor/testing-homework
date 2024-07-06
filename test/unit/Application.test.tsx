@@ -3,12 +3,12 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
 import { Application } from "../../src/client/Application";
 
 const mockStore = configureStore({
   reducer: (state = { cart: {} }) => state,
-})
+});
 
 describe("Навигация в шапке странице", () => {
   it("отображает навигационные ссылки", () => {
@@ -65,5 +65,22 @@ describe("Навигация в шапке странице", () => {
     // Возвращаем размер экрана к исходному состоянию
     window.innerWidth = 1024;
     window.dispatchEvent(new Event("resize"));
+  });
+
+  it("проверяет, что других ссылок нет", () => {
+    render(
+      <Provider store={mockStore}>
+        <MemoryRouter>
+          <Application />
+        </MemoryRouter>
+      </Provider>
+    );
+
+    const allowedLinks = ["/catalog", "/delivery", "/contacts", "/cart", "/"];
+
+    const links = screen.getAllByRole("link");
+    links.forEach((link) => {
+      expect(allowedLinks).toContain(link.getAttribute("href"));
+    });
   });
 });
