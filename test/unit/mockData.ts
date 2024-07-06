@@ -40,5 +40,12 @@ const generateMockProducts = (count: number = 3): Product[] => {
     return products;
 };
 
+export const mockCart = {
+    1: { id: 1, name: commerce.productAdjective(), price: Number(commerce.price()), count: 2 },
+    2: { id: 2, name: commerce.productAdjective(), price: Number(commerce.price()), count: 1 }
+};
+
+export const emptyCart = {};
+
 export const mockProducts = generateMockProducts();
 export type { Product, ProductShortInfo };
