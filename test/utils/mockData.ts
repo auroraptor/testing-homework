@@ -16,7 +16,7 @@ interface ProductShortInfo {
 
 import { Faker, en } from '@faker-js/faker';
 
-const faker = new Faker({
+export const faker = new Faker({
     locale: [en],
 });
 

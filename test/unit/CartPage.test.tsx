@@ -6,7 +6,7 @@ import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { Cart } from '../../src/client/pages/Cart';
-import { mockProducts, mockCart, emptyCart } from './mockData';
+import { mockProducts, mockCart, emptyCart } from '../utils/mockData';
 import { ApplicationState, createRootReducer } from '../../src/client/store';
 
 const initialState: ApplicationState = {

@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { Catalog } from '../../src/client/pages/Catalog';
 import { ApplicationState } from '../../src/client/store';
-import { mockProducts, ProductShortInfo } from './mockData'; // Используем mock данные и тип
+import { mockProducts, ProductShortInfo } from '../utils/mockData'; // Используем mock данные и тип
 
 jest.mock('../../src/client/components/ProductItem', () => ({
     ProductItem: ({ product }: { product: ProductShortInfo }) => (

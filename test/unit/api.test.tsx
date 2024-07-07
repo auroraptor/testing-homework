@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ExampleApi } from "../../src/client/api";
-import { ProductShortInfo } from "./mockData";
+import { ProductShortInfo } from "../utils/mockData";
 import { basename } from "../utils/basename";
 
 describe("Тестирование данных с сервера", () => {
