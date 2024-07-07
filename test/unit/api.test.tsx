@@ -1,9 +1,9 @@
 import axios from "axios";
 import { ExampleApi } from "../../src/client/api";
 import { ProductShortInfo } from "./mockData";
+import { basename } from "../utils/basename";
 
 describe("Тестирование данных с сервера", () => {
-  const basename = "http://localhost:3000/hw/store";
   const api = new ExampleApi(basename);
 
   it("получает товары напрямую через axios", async () => {

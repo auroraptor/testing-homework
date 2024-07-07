@@ -1,0 +1,1 @@
+export const basename = "http://localhost:3000/hw/store";
