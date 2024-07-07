@@ -1,6 +1,11 @@
-import { CheckoutFormData } from "src/common/types";
 import { CartApi, ExampleApi } from "../../src/client/api";
-import { Action, ApplicationState, initStore } from "../../src/client/store";
+import {
+  Action,
+  ApplicationState,
+  checkout,
+  checkoutComplete,
+  initStore,
+} from "../../src/client/store";
 
 // Создаем экземпляры API и инициализируем store
 const basename = "http://localhost:3000/hw/store";
@@ -8,7 +13,6 @@ const api = new ExampleApi(basename);
 const cart = new CartApi();
 const store = initStore(api, cart);
 
-// Мокаем setState
 jest.mock("../../src/client/api", () => {
   const originalModule = jest.requireActual("../../src/client/api");
   return {
@@ -93,5 +97,43 @@ describe("Тестирование createRootReducer", () => {
     expect(state.latestOrderId).toEqual(orderId);
     expect(cart.setState).toHaveBeenCalled();
     expect(state.cart).toEqual({});
+  });
+});
+
+
+describe("мок ExampleApi для CHECKOUT_COMPLETE", () => {
+  beforeAll(() => {
+    jest.mock("../../src/client/api", () => {
+      const originalModule = jest.requireActual("../../src/client/api");
+      return {
+        ...originalModule,
+        ExampleApi: jest.fn().mockImplementation(() => {
+          return {
+            checkout: jest.fn().mockResolvedValue({ data: { id: 1712 } }),
+            getProducts: originalModule.ExampleApi.prototype.getProducts,
+            getProductById: originalModule.ExampleApi.prototype.getProductById,
+          };
+        }),
+      };
+    });
+
+    jest.mock("../../src/client/store", () => {
+      const originalModule = jest.requireActual("../../src/client/store");
+      return {
+        ...originalModule,
+        checkoutComplete: jest.fn().mockReturnValue({ type: 'CHECKOUT_COMPLETE', orderId: 1712 }),
+      };
+    });
+  });
+
+  it.skip("обрабатывает CHECKOUT_COMPLETE", async () => {
+    const { data: product } = await api.getProductById(7);
+    store.dispatch({ type: "ADD_TO_CART", product });
+
+    const orderId = 1712; // Это значение должно быть получено от сервера после выполнения checkout
+    const action: Action = { type: "CHECKOUT_COMPLETE", orderId };
+    store.dispatch(action);
+
+    expect(api.checkout).toHaveReturnedWith(orderId);
   });
 });
