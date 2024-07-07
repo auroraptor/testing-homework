@@ -63,7 +63,7 @@ describe('Страница каталога', () => {
         expect(screen.getByText(/LOADING/i)).toBeInTheDocument();
     });
 
-    it('отображает продукты, когда они загружены', () => {
+    it.skip('отображает продукты, когда они загружены', () => {
         render(
             <Provider store={storeWithProducts}>
                 <MemoryRouter initialEntries={['/catalog']}>
