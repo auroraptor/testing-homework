@@ -62,6 +62,11 @@ describe("Навигация в шапке странице", () => {
     fireEvent.click(hamburgerButton);
     expect(navbarMenu).toHaveClass("collapse");
 
+    fireEvent.click(hamburgerButton);
+    const catalogLink = screen.getByText(/catalog/i);
+    fireEvent.click(catalogLink);
+    expect(navbarMenu).toHaveClass("collapse");
+
     // Возвращаем размер экрана к исходному состоянию
     window.innerWidth = 1024;
     window.dispatchEvent(new Event("resize"));
