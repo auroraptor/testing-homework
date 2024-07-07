@@ -39,7 +39,7 @@ describe("Навигация в шапке странице", () => {
     expect(global.window.location.pathname).toEqual("/");
   });
 
-  it("Гамбургер-меню открывается и закрывается", () => {
+  it("гамбургер-меню открывается и закрывается", () => {
     window.innerWidth = 500; // Устанавливаем ширину экрана меньше 575 пикселей
     window.dispatchEvent(new Event("resize"));
 
