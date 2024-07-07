@@ -28,7 +28,7 @@ describe("Навигация в шапке странице", () => {
   });
 
   it("гамбургер-меню закрывается", async ({ browser }) => {
-    await browser.url(getUrl("delivery"));
+    await browser.url(getUrl("/delivery"));
     await browser.setWindowSize(575, 575);
 
     const toggler = await browser.$(".Application-Toggler.navbar-toggler");

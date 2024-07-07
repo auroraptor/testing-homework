@@ -7,7 +7,7 @@ describe("Страница корзины", () => {
 	}) => {
 		await browser.url("/hw/store/cart");
 		const cart = await browser.$(".Cart");
-        const linkToCatalog = await cart.$$("a");
+        const linkToCatalog = await cart.$$("a")
 
 		expect(linkToCatalog).toExist();
 	});
@@ -15,7 +15,7 @@ describe("Страница корзины", () => {
 	it("отображает корзину с продуктами", async ({
 		browser,
 	}) => {
-		await browser.url(getUrl("catalog/0"));
+		await browser.url(getUrl("/catalog/0"));
 		const addToCartBtn = await browser.$(".ProductDetails-AddToCart");
 
 		await addToCartBtn.click();
