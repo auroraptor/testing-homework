@@ -5,7 +5,7 @@ describe("Страница корзины", () => {
   it("отображает ссылку на каталог, когда корзина пуста", async ({
     browser,
   }) => {
-    await browser.url("/hw/store/cart");
+    await browser.url(getUrl("/cart"));
     const cart = await browser.$(".Cart");
     const linkToCatalog = await cart.$$("a");
 
@@ -17,7 +17,7 @@ describe("Страница корзины", () => {
     const addToCartBtn = await browser.$(".ProductDetails-AddToCart");
 
     await addToCartBtn.click();
-    await browser.url("/hw/store/cart");
+    await browser.url(getUrl("/cart"));
     const cartTable = await browser.$(".Cart-Table");
     await cartTable.waitForExist();
 
@@ -25,7 +25,7 @@ describe("Страница корзины", () => {
   });
 
   it("отображает сообщение об успешном заказе", async ({ browser }) => {
-    await browser.url("/hw/store/cart");
+    await browser.url(getUrl("/cart"));
     const orderForm = await browser.$(".Form");
 
     const inputName = await orderForm.$("input#f-name");
@@ -49,7 +49,7 @@ describe("Страница корзины", () => {
     await browser.url(getUrl("/catalog/0"));
     const addToCartBtn = await browser.$(".ProductDetails-AddToCart");
     await addToCartBtn.click();
-    await browser.url("/hw/store/cart");
+    await browser.url(getUrl("/cart"));
     const orderForm = await browser.$(".Form");
 
     const inputName = await orderForm.$("input#f-name");
