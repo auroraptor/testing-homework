@@ -7,8 +7,7 @@ describe("Тестирование данных с сервера", () => {
   const api = new ExampleApi(basename);
 
   it("получает товары напрямую через axios", async () => {
-    const response = await axios.get(`${basename}/api/products`);
-    const { data } = response;
+    const { data } = await axios.get(`${basename}/api/products`);
 
     data.forEach((product: ProductShortInfo) => {
       expect(product.id).not.toBeUndefined();

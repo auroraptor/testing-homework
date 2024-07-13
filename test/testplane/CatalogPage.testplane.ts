@@ -11,7 +11,7 @@ describe("Динамические страницы", () => {
       await browser.setWindowSize(375, 667);
       await app.assertView("catalog_mobile");
     });
-    it("отображает страницу каталога", async ({ browser }) => {
+    it("отображает страницу продукта", async ({ browser }) => {
         await browser.url(getUrl("/catalog/0"));
         await browser.setWindowSize(1024, 768);
         const app = await browser.$(".Product");
